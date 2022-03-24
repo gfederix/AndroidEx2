@@ -1,8 +1,11 @@
 package com.company;
 
-public class CardB {
-    private int rank;
-    private int suit;
+public class CardB implements Comparable< CardB > {
+    private final int rank;
+    private final int suit;
+    static final int ACE = 14;
+    static final int JOKER = 15;
+
     CardB(  int suit, int rank ){
         this.rank = rank;
         this.suit = suit;
@@ -12,8 +15,8 @@ public class CardB {
             case (11): return "Jack";
             case (12): return "Queen";
             case (13): return "King";
-            case (14): return "Ace";
-            case (15): return "Joker";
+            case (ACE): return "Ace";
+            case (JOKER): return "Joker";
             default: return String.valueOf( rank );
 
         }
@@ -37,7 +40,8 @@ public class CardB {
     public boolean grater( CardB other ){
         return other.suit == suit && other.rank < rank;
     }
-    public int compare( CardB other ){
+
+    public int compareTo( CardB other ){
         int suit_cmp = suit - other.suit;
         if ( suit_cmp == 0 ) {
             return  rank - other.rank;
